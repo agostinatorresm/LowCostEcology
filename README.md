@@ -1,36 +1,36 @@
-# 🌿 Low-Cost Ecology — Recursos Abiertos
+# 🌿 LowCostEcology — Open Resources
 
-> Lista curada de bases de datos, softwares e imágenes gratuitos o de bajo costo para investigación ecológica. Recurso complementario al paper **"Ecología en tiempos de recortes"**.
+> A curated list of free or low-cost databases, software, and images for ecological research. Companion resource to the paper **"Ecology on a tight budget"**.
 
-🌐 **Sitio web:** `https://agostinatorresm.github.io/low-cost-ecology`
+🌐 **Website:** `https://agostinatorresm.github.io/LowCostEcology`
 
 ---
 
-## ¿Cómo sugerir un recurso?
+## How to suggest a resource
 
-1. Abrí un [nuevo Issue](../../issues/new?template=sugerencia.md&labels=sugerencia) con el template
-2. El equipo lo revisará antes de publicarlo
-3. Si es aprobado, lo agregamos al `resources.json` y se publica automáticamente
+1. Open a [new Issue](../../issues/new?labels=suggestion) using the suggestion template
+2. The team will review it before publishing
+3. If approved, we add it to `resources.json` and it goes live automatically
 
-## Estructura del proyecto
+## Project structure
 
 ```
-low-cost-ecology/
-├── index.html        # Sitio web principal
-├── resources.json    # Lista de recursos (editá este archivo)
+LowCostEcology/
+├── index.html        # Main website
+├── resources.json    # Resource list (edit this file to add new ones)
 └── README.md
 ```
 
-## Agregar un recurso aprobado
+## Adding an approved resource
 
-Editá `resources.json` y agregá un objeto con este formato:
+Edit `resources.json` and add an object with this format:
 
 ```json
 {
-  "id": 11,
-  "name": "Nombre del recurso",
-  "category": "Database | Software | Images | Other",
-  "description": "Descripción breve y útil.",
+  "id": 27,
+  "name": "Resource name",
+  "category": "Database | Dataset | Software | Images",
+  "description": "Brief and useful description.",
   "url": "https://...",
   "tags": ["tag1", "tag2"],
   "free": true,
@@ -38,6 +38,6 @@ Editá `resources.json` y agregá un objeto con este formato:
 }
 ```
 
-## Licencia
+## License
 
-CC BY 4.0 — Libre para usar y compartir con atribución.
+CC BY 4.0 — Free to use and share with attribution.
