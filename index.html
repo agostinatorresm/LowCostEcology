@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Low-Cost Ecology — Open Resources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f4f6f2;color:#1a1a16;min-height:100vh}
+header{background:#1c3a1c;padding:40px 32px 28px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:rgba(127,191,111,0.07);pointer-events:none}
+.header-inner{max-width:960px;margin:0 auto;position:relative}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.22em;color:#7fbf6f;text-transform:uppercase;margin-bottom:10px}
+h1{font-size:clamp(24px,4vw,40px);font-weight:600;color:#fff;line-height:1.15;margin-bottom:10px}
+h1 span{color:#7fbf6f}
+.subtitle{color:#c8e6c4;font-size:14px;line-height:1.65;max-width:520px;margin-bottom:22px}
+.header-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.btn-green{background:#7fbf6f;color:#1c3a1c;border:none;padding:10px 20px;border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s}
+.btn-green:hover{background:#9fd48e}
+.btn-ghost{background:transparent;color:#c8e6c4;border:1px solid rgba(255,255,255,0.2);padding:10px 20px;border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none;transition:border-color .15s}
+.btn-ghost:hover{border-color:#7fbf6f}
+.hstats{display:flex;gap:28px;border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;flex-wrap:wrap}
+.hstat-val{font-size:24px;font-weight:600;color:#fff}
+.hstat-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7fbf6f;text-transform:uppercase;letter-spacing:0.12em}
+.controls{background:#fff;border-bottom:1px solid #e5e8e2;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.controls-inner{max-width:960px;margin:0 auto;padding:12px 32px;display:flex;gap:10px;align-items:center}
+.search-wrap{flex:1;position:relative}
+.search-wrap i{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#888;font-size:16px}
+.search-wrap input{width:100%;padding:9px 12px 9px 34px;border:1.5px solid #dde0da;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;background:#f8f9f6;outline:none;transition:border-color .15s}
+.search-wrap input:focus{border-color:#4a8c3f;background:#fff}
+.main{max-width:960px;margin:0 auto;padding:24px 32px 64px}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;color:#888;margin-bottom:18px;flex-wrap:wrap}
+.breadcrumb span{cursor:pointer;color:#888;transition:color .12s}
+.breadcrumb span:hover{color:#1a1a16}
+.breadcrumb .sep{color:#ccc}
+.breadcrumb .active{color:#1a1a16;font-weight:500}
+.level-label{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:#aaa;margin-bottom:12px}
+.org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:8px}
+.org-card{background:#fff;border:1.5px solid #e5e8e2;border-radius:14px;padding:18px 14px 14px;cursor:pointer;text-align:center;transition:all .15s}
+.org-card:hover{border-color:#4a8c3f;box-shadow:0 4px 16px rgba(74,140,63,0.1)}
+.org-card.active{border-color:#3B6D11;background:#EAF3DE}
+.org-icon{font-size:26px;color:#555;margin-bottom:8px}
+.org-card:hover .org-icon,.org-card.active .org-icon{color:#3B6D11}
+.org-name{font-size:13px;font-weight:500;color:#1a1a16;margin-bottom:3px}
+.org-count{font-size:11px;font-family:'IBM Plex Mono',monospace;color:#aaa}
+.org-card.active .org-count{color:#3B6D11}
+.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:8px}
+.type-card{background:#fff;border:1.5px solid #e5e8e2;border-radius:14px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .15s}
+.type-card:hover{border-color:#0F6E56;box-shadow:0 4px 16px rgba(15,110,86,0.1)}
+.type-card.active{border-color:#085041;background:#E1F5EE}
+.type-icon{font-size:20px;color:#888;flex-shrink:0}
+.type-card:hover .type-icon,.type-card.active .type-icon{color:#0F6E56}
+.type-name{font-size:13px;font-weight:500;color:#1a1a16}
+.type-count{font-size:11px;font-family:'IBM Plex Mono',monospace;color:#aaa}
+.type-card.active .type-count{color:#0F6E56}
+.topic-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.topic-pill{padding:6px 14px;border-radius:20px;border:1.5px solid #e5e8e2;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer;color:#777;transition:all .12s}
+.topic-pill:hover{border-color:#534AB7;color:#534AB7}
+.topic-pill.active{background:#534AB7;border-color:#534AB7;color:#fff}
+.resource-list{display:flex;flex-direction:column;gap:10px}
+.rcard{background:#fff;border:1.5px solid #e5e8e2;border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:border-color .15s}
+.rcard:hover{border-color:#c8dcc4}
+.rdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.rbody{flex:1;min-width:0}
+.rtop{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-bottom:5px}
+.rname{font-size:15px;font-weight:600;color:#1c3a1c}
+.rbadges{display:flex;gap:4px;flex-wrap:wrap}
+.badge{padding:2px 9px;border-radius:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;white-space:nowrap}
+.b-db{background:#E1F5EE;color:#085041;border:1px solid #5DCAA5}
+.b-ds{background:#E6F1FB;color:#0C447C;border:1px solid #85B7EB}
+.b-sw{background:#EEEDFE;color:#3C3489;border:1px solid #AFA9EC}
+.b-img{background:#FAEEDA;color:#633806;border:1px solid #EF9F27}
+.b-topic{background:#f4f6f2;color:#666;border:1px solid #dde0da}
+.rdesc{font-size:13px;color:#555;line-height:1.6;margin-bottom:8px}
+.rfooter{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.rtags{display:flex;gap:4px;flex-wrap:wrap}
+.rtag{background:#f4f6f2;color:#888;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:10px}
+.rlink{font-size:11px;font-family:'IBM Plex Mono',monospace;color:#3B6D11;text-decoration:none;margin-left:auto}
+.rlink:hover{color:#27500A;text-decoration:underline}
+.rpaper{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#888;text-decoration:none}
+.rpaper:hover{color:#534AB7}
+.empty{text-align:center;padding:56px 20px;color:#aaa}
+.empty i{font-size:36px;margin-bottom:12px;display:block}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:center;justify-content:center;padding:24px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:18px;padding:32px;max-width:460px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.18);position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:14px;right:18px;background:none;border:none;font-size:22px;cursor:pointer;color:#aaa}
+.modal-close:hover{color:#333}
+.modal-title{font-size:20px;font-weight:600;color:#1c3a1c;margin-bottom:4px}
+.modal-sub{font-size:13px;color:#888;margin-bottom:20px;line-height:1.55}
+.field{margin-bottom:14px}
+.field label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:#888;margin-bottom:5px}
+.field input,.field textarea,.field select{width:100%;padding:9px 12px;border:1.5px solid #dde0da;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .15s;background:#f8f9f6}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#4a8c3f;background:#fff}
+.field textarea{min-height:75px;resize:vertical}
+.modal-actions{display:flex;gap:10px;margin-top:18px}
+.btn-cancel-m{flex:1;padding:10px;background:#f4f6f2;border:none;border-radius:8px;cursor:pointer;font-size:13px;color:#777}
+.btn-cancel-m:hover{background:#e8ebe4}
+.btn-submit-m{flex:2;padding:10px;background:#1c3a1c;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500}
+.btn-submit-m:hover{background:#2e5c28}
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:#1c3a1c;color:#c8e6c4;padding:11px 24px;border-radius:30px;font-family:'IBM Plex Mono',monospace;font-size:12px;box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:300;transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap}
+#toast.show{transform:translateX(-50%) translateY(0)}
+footer{background:#1c3a1c;color:#7fbf6f;text-align:center;padding:28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.9}
+footer a{color:#7fbf6f}
+@media(max-width:600px){header{padding:28px 16px 20px}.controls-inner{padding:10px 16px}.main{padding:18px 16px 48px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">low-cost-ecology · open resources</div>
+    <h1>Ecology on a<br><span>tight budget</span></h1>
+    <p class="subtitle">A curated list of free or low-cost databases, software, and images for ecological research. Companion resource to the paper.</p>
+    <div class="header-actions">
+      <button class="btn-green" onclick="openModal()"><i class="ti ti-plus"></i> Suggest a resource</button>
+      <a class="btn-ghost" href="https://github.com/agostinatorresm/LowCostEcology" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
+    </div>
+    <div class="hstats">
+      <div><div class="hstat-val">26</div><div class="hstat-label">resources</div></div>
+      <div><div class="hstat-val">100%</div><div class="hstat-label">free</div></div>
+      <div><div class="hstat-val">5</div><div class="hstat-label">organism types</div></div>
+    </div>
+  </div>
+</header>
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <i class="ti ti-search"></i>
+      <input type="search" id="search" placeholder="Search resources, tags, topics… (press / to focus)" oninput="onSearch()"/>
+    </div>
+  </div>
+</div>
+<main class="main">
+  <div class="breadcrumb" id="breadcrumb"></div>
+  <div id="view-organism">
+    <div class="level-label">Level 1 · Organism type</div>
+    <div class="org-grid" id="org-grid"></div>
+  </div>
+  <div id="view-type" style="display:none">
+    <div class="level-label">Level 2 · Resource type</div>
+    <div class="type-grid" id="type-grid"></div>
+  </div>
+  <div id="view-topic" style="display:none">
+    <div class="level-label">Level 3 · Ecological topic</div>
+    <div class="topic-row" id="topic-row"></div>
+    <div class="resource-list" id="resource-list"></div>
+  </div>
+  <div id="view-search" style="display:none">
+    <div class="level-label" id="search-label"></div>
+    <div class="resource-list" id="search-list"></div>
+  </div>
+</main>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-inner"></div>
+  </div>
+</div>
+<div id="toast"></div>
+<footer>
+  Open resource · <a href="https://github.com/agostinatorresm/LowCostEcology" target="_blank">GitHub</a> · CC BY 4.0 License<br>
+  Missing a resource? <button onclick="openModal()" style="background:none;border:none;color:#7fbf6f;cursor:pointer;font-family:inherit;font-size:inherit;text-decoration:underline">Suggest one →</button>
+</footer>
+<script>
+const ORGS=[
+  {id:"plants",label:"Plants",icon:"ti-plant-2",color:"#3B6D11"},
+  {id:"animals",label:"Animals",icon:"ti-paw",color:"#854F0B"},
+  {id:"fungi",label:"Fungi",icon:"ti-mushroom",color:"#993C1D"},
+  {id:"multi",label:"Multi-organism",icon:"ti-world",color:"#185FA5"},
+  {id:"env",label:"Environment / Climate",icon:"ti-cloud",color:"#534AB7"},
+];
+const TYPES=[
+  {id:"Database",label:"Database",icon:"ti-database",bc:"b-db"},
+  {id:"Dataset",label:"Dataset",icon:"ti-file-spreadsheet",bc:"b-ds"},
+  {id:"Software",label:"Software",icon:"ti-terminal-2",bc:"b-sw"},
+  {id:"Images",label:"Images",icon:"ti-satellite",bc:"b-img"},
+];
+const RES=[
+  {name:"BIEN",org:"plants",type:"Database",topic:"distribution",desc:"Occurrences, inventories, traits, and phylogenies of plants from the New World.",url:"https://bien.nceas.ucsb.edu/bien/",paper:"https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12861",tags:["plants","phylogeny","New World"]},
+  {name:"CESTES",org:"multi",type:"Database",topic:"traits",desc:"80 datasets of empirical trait-environment relationships from 1996 to 2018.",url:"https://icestes.github.io/",paper:"https://www.nature.com/articles/s41597-019-0344-7",tags:["traits","environment","multivariate"]},
+  {name:"CoRRE Trait Data",org:"plants",type:"Dataset",topic:"traits",desc:"17 categorical and continuous traits for 4,079 grassland species worldwide.",url:"https://portal.edirepository.org/nis/mapbrowse?packageid=edi.1533.3",paper:"https://www.nature.com/articles/s41597-024-03637-x",tags:["traits","grasslands","global"]},
+  {name:"FRED",org:"plants",type:"Database",topic:"traits",desc:"Fine-root functional traits organized in a common framework.",url:"https://roots.ornl.gov/",paper:"https://nph.onlinelibrary.wiley.com/doi/full/10.1111/nph.14486",tags:["roots","soil","functional"]},
+  {name:"FungalRoot",org:"fungi",type:"Database",topic:"symbiosis",desc:"Global database of plant mycorrhizal associations including colonization intensity.",url:"https://www.gbif.org/dataset/744edc21-8dd2-474e-8a0b-b8c3d56a3c2d",paper:"https://nph.onlinelibrary.wiley.com/doi/epdf/10.1111/nph.16569",tags:["mycorrhiza","colonization","roots"]},
+  {name:"GloBI",org:"multi",type:"Database",topic:"interactions",desc:"Open access to biotic interaction data: predator-prey, pollinator-plant, parasite-host.",url:"https://www.globalbioticinteractions.org/",paper:"https://www.sciencedirect.com/science/article/pii/S1574954114001125",tags:["interactions","networks","predation"]},
+  {name:"MycoDB",org:"fungi",type:"Database",topic:"symbiosis",desc:"Plant biomass responses to mycorrhizal inoculation with meta-analysis metrics.",url:"https://doi.org/10.5061/dryad.723m1",paper:"https://www.nature.com/articles/sdata201628",tags:["mycorrhiza","biomass","meta-analysis"]},
+  {name:"Open Traits Network",org:"multi",type:"Dataset",topic:"traits",desc:"Standardizes and integrates trait data across all organisms.",url:"https://opentraits.org/datasets.html",paper:"",tags:["traits","integration","all organisms"]},
+  {name:"PLANTS Database",org:"plants",type:"Database",topic:"taxonomy",desc:"Vascular plants, mosses, and lichens of the U.S. and territories.",url:"https://plants.usda.gov/home",paper:"",tags:["taxonomy","USA","flora"]},
+  {name:"Seed Information Database",org:"plants",type:"Database",topic:"traits",desc:"Global compilation of seed biological trait data.",url:"https://ser-sid.org/",paper:"",tags:["seeds","traits","reproduction"]},
+  {name:"TRY",org:"plants",type:"Database",topic:"traits",desc:"Global database of curated plant traits. One of the most widely used in functional ecology.",url:"https://www.try-db.org/TryWeb/Home.php",paper:"https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2486.2011.02451.x",tags:["traits","functional ecology","global"]},
+  {name:"Global Aridity Index",org:"env",type:"Database",topic:"climate",desc:"Global aridity index and potential evapotranspiration at high spatial resolution (v2).",url:"https://figshare.com/articles/dataset/Global_Aridity_Index_and_Potential_Evapotranspiration_ET0_Climate_Database_v2/7504448/6",paper:"",tags:["aridity","evapotranspiration","raster"]},
+  {name:"WorldClim",org:"env",type:"Database",topic:"climate",desc:"High-resolution global climate data with bioclimatic variables for niche modeling.",url:"https://www.worldclim.org",paper:"",tags:["climate","bioclimatic","niche modeling"]},
+  {name:"GBIF",org:"multi",type:"Database",topic:"biodiversity",desc:"Global platform with free access to species occurrence records.",url:"https://www.gbif.org/",paper:"",tags:["occurrences","biodiversity","global"]},
+  {name:"BioTIME",org:"multi",type:"Database",topic:"biodiversity",desc:"Global database of time series of assemblages to quantify biodiversity change.",url:"https://biotime.st-andrews.ac.uk/",paper:"",tags:["time series","change","assemblages"]},
+  {name:"Web of Life",org:"multi",type:"Database",topic:"interactions",desc:"Ecological network database: pollination, herbivory, host-parasite interactions.",url:"https://www.web-of-life.es/",paper:"",tags:["networks","pollination","herbivory"]},
+  {name:"GenBank",org:"multi",type:"Database",topic:"genetics",desc:"NIH genetic sequence database covering all organisms.",url:"https://www.ncbi.nlm.nih.gov/genbank/",paper:"",tags:["DNA","sequences","bioinformatics"]},
+  {name:"Movebank",org:"animals",type:"Database",topic:"movement",desc:"Global repository of animal movement and migration data with visualization tools.",url:"https://www.movebank.org/cms/movebank-main",paper:"",tags:["telemetry","migration","wildlife"]},
+  {name:"eBird",org:"animals",type:"Database",topic:"biodiversity",desc:"Global bird observation database maintained by Cornell Lab. API and downloadable data.",url:"https://ebird.org/home",paper:"",tags:["birds","citizen science","ornithology"]},
+  {name:"GloNAF",org:"plants",type:"Database",topic:"invasions",desc:"Naturalized alien plant species lists by region. Key for biological invasion studies.",url:"https://glonaf.org/",paper:"https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecy.2542",tags:["invasive","naturalization","flora"]},
+  {name:"POWO",org:"plants",type:"Database",topic:"taxonomy",desc:"Taxonomy, distribution, traits, and uses of vascular plants worldwide (Kew).",url:"https://powo.science.kew.org/",paper:"",tags:["taxonomy","Kew","distribution"]},
+  {name:"InvaCost",org:"multi",type:"Database",topic:"invasions",desc:"Global estimation of the economic cost of biological invasions per species.",url:"https://invacost.fr/en/accueil/",paper:"https://www.nature.com/articles/s41597-020-00586-z",tags:["invasions","economics","policy"]},
+  {name:"KNB",org:"multi",type:"Dataset",topic:"repository",desc:"International repository for ecological and environmental research data (NSF, 1998).",url:"https://knb.ecoinformatics.org/data",paper:"",tags:["repository","NSF","open access"]},
+  {name:"EDI",org:"multi",type:"Dataset",topic:"repository",desc:"Environmental data following FAIR principles for accessibility and reusability.",url:"https://portal.edirepository.org/nis/home.jsp",paper:"",tags:["FAIR","repository","reusable"]},
+  {name:"NEON",org:"multi",type:"Dataset",topic:"monitoring",desc:"Network of U.S. field sites with standardized terrestrial and aquatic ecological data (NSF).",url:"https://data.neonscience.org/data-products/explore",paper:"",tags:["monitoring","USA","terrestrial"]},
+  {name:"MammalBase",org:"animals",type:"Database",topic:"traits",desc:"Traits, measurements, and diets of mammal species for macroecology and paleontology.",url:"https://www.mammalbase.net/mb",paper:"",tags:["mammals","diet","macroecology"]},
+];
+const dotColor={plants:"#3B6D11",animals:"#854F0B",fungi:"#993C1D",multi:"#185FA5",env:"#534AB7"};
+let selOrg=null,selType=null,selTopic=null;
+const orgCount=id=>RES.filter(r=>r.org===id).length;
+const typeCount=(o,t)=>RES.filter(r=>r.org===o&&r.type===t).length;
+const getTopics=(o,t)=>[...new Set(RES.filter(r=>r.org===o&&r.type===t).map(r=>r.topic))].sort();
+const getRes=(o,t,tp)=>RES.filter(r=>r.org===o&&r.type===t&&(!tp||r.topic===tp));
+function buildOrgs(){
+  document.getElementById("org-grid").innerHTML=ORGS.map(o=>{
+    const c=orgCount(o.id);if(!c)return"";
+    return`<div class="org-card${selOrg===o.id?" active":""}" onclick="selectOrg('${o.id}')"><div class="org-icon"><i class="ti ${o.icon}"></i></div><div class="org-name">${o.label}</div><div class="org-count">${c} resources</div></div>`;
+  }).join("");
+}
+function buildTypes(){
+  document.getElementById("type-grid").innerHTML=TYPES.map(t=>{
+    const c=typeCount(selOrg,t.id);if(!c)return"";
+    return`<div class="type-card${selType===t.id?" active":""}" onclick="selectType('${t.id}')"><div class="type-icon"><i class="ti ${t.icon}"></i></div><div><div class="type-name">${t.label}</div><div class="type-count">${c} resources</div></div></div>`;
+  }).join("");
+}
+function buildTopics(){
+  const topics=getTopics(selOrg,selType);
+  document.getElementById("topic-row").innerHTML=`<button class="topic-pill${!selTopic?" active":""}" onclick="selectTopic(null)">All</button>`+topics.map(t=>`<button class="topic-pill${selTopic===t?" active":""}" onclick="selectTopic('${t}')">${t}</button>`).join("");
+}
+function buildCards(cid,items){
+  if(!items.length){document.getElementById(cid).innerHTML=`<div class="empty"><i class="ti ti-mood-empty"></i><p>No results found</p></div>`;return;}
+  document.getElementById(cid).innerHTML=items.map(r=>{
+    const tp=TYPES.find(t=>t.id===r.type);
+    return`<div class="rcard"><div class="rdot" style="background:${dotColor[r.org]}"></div><div class="rbody"><div class="rtop"><div class="rname">${r.name}</div><div class="rbadges"><span class="badge ${tp?.bc||"b-db"}">${r.type}</span><span class="badge b-topic">${r.topic}</span></div></div><div class="rdesc">${r.desc}</div><div class="rfooter"><div class="rtags">${r.tags.map(t=>`<span class="rtag">${t}</span>`).join("")}</div><a class="rlink" href="${r.url}" target="_blank">↗ visit</a>${r.paper?`<a class="rpaper" href="${r.paper}" target="_blank">📄 paper</a>`:""}</div></div></div>`;
+  }).join("");
+}
+function buildBreadcrumb(){
+  const org=ORGS.find(o=>o.id===selOrg);
+  let p=[`<span onclick="reset()">all</span>`];
+  if(selOrg)p.push(`<span class="sep">/</span><span onclick="goOrg()">${org?.label}</span>`);
+  if(selType)p.push(`<span class="sep">/</span><span onclick="goType()">${selType}</span>`);
+  if(selTopic)p.push(`<span class="sep">/</span><span class="active">${selTopic}</span>`);
+  document.getElementById("breadcrumb").innerHTML=p.join("");
+}
+function show(n){["organism","type","topic","search"].forEach(v=>document.getElementById("view-"+v).style.display=v===n?"":"none");}
+function reset(){selOrg=null;selType=null;selTopic=null;document.getElementById("search").value="";buildOrgs();buildBreadcrumb();show("organism");}
+function selectOrg(id){selOrg=id;selType=null;selTopic=null;buildOrgs();buildTypes();buildBreadcrumb();show("type");}
+function selectType(id){selType=id;selTopic=null;buildTypes();buildTopics();buildCards("resource-list",getRes(selOrg,selType,null));buildBreadcrumb();show("topic");}
+function selectTopic(t){selTopic=t;buildTopics();buildCards("resource-list",getRes(selOrg,selType,t));buildBreadcrumb();}
+function goOrg(){selType=null;selTopic=null;buildTypes();buildBreadcrumb();show("type");}
+function goType(){selTopic=null;buildTopics();buildCards("resource-list",getRes(selOrg,selType,null));buildBreadcrumb();show("topic");}
+function onSearch(){
+  const q=document.getElementById("search").value.toLowerCase().trim();
+  if(!q){reset();return;}
+  const found=RES.filter(r=>r.name.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q)||r.tags.some(t=>t.toLowerCase().includes(q))||r.topic.toLowerCase().includes(q));
+  document.getElementById("search-label").textContent=`${found.length} result${found.length!==1?"s":""} for "${q}"`;
+  buildCards("search-list",found);
+  document.getElementById("breadcrumb").innerHTML=`<span onclick="reset()">all</span><span class="sep">/</span><span class="active">search: "${q}"</span>`;
+  show("search");
+}
+function getFormHTML(){
+  return`<div class="modal-title">Suggest a resource</div><p class="modal-sub">Your suggestion will be sent as a GitHub Issue. The team will review it before publishing.</p><div class="field"><label>Name *</label><input id="f-name" placeholder="e.g. GBIF, TRY, QGIS..."/></div><div class="field"><label>Organism group</label><select id="f-org"><option>Plants</option><option>Animals</option><option>Fungi</option><option>Multi-organism</option><option>Environment / Climate</option></select></div><div class="field"><label>Resource type</label><select id="f-type"><option>Database</option><option>Dataset</option><option>Software</option><option>Images</option></select></div><div class="field"><label>URL</label><input id="f-url" placeholder="https://..."/></div><div class="field"><label>Description *</label><textarea id="f-desc" placeholder="What is it and how is it useful for ecology?"></textarea></div><div class="field"><label>Tags (comma-separated)</label><input id="f-tags" placeholder="biodiversity, traits, global..."/></div><div class="modal-actions"><button class="btn-cancel-m" onclick="closeModal()">Cancel</button><button class="btn-submit-m" onclick="submitSuggestion()">Submit suggestion →</button></div>`;
+}
+function openModal(){document.getElementById("modal-inner").innerHTML=getFormHTML();document.getElementById("overlay").classList.add("open");document.body.style.overflow="hidden";}
+function closeModal(){document.getElementById("overlay").classList.remove("open");document.body.style.overflow="";}
+function submitSuggestion(){
+  const name=document.getElementById("f-name").value.trim();
+  const desc=document.getElementById("f-desc").value.trim();
+  if(!name||!desc){showToast("Please fill in name and description");return;}
+  const cat=document.getElementById("f-org").value;
+  const type=document.getElementById("f-type").value;
+  const url=document.getElementById("f-url").value.trim();
+  const tags=document.getElementById("f-tags").value.trim();
+  const body=encodeURIComponent("**Name:** "+name+"\n**Organism group:** "+cat+"\n**Type:** "+type+"\n**URL:** "+(url||"—")+"\n**Description:** "+desc+"\n**Tags:** "+(tags||"—")+"\n\n---\n*Suggested via low-cost-ecology website*");
+  window.open("https://github.com/agostinatorresm/LowCostEcology/issues/new?title="+encodeURIComponent("[Suggestion] "+name)+"&body="+body+"&labels=suggestion","_blank");
+  document.getElementById("modal-inner").innerHTML=`<div style="text-align:center;padding:24px 0"><i class="ti ti-circle-check" style="font-size:52px;color:#3B6D11"></i><div style="font-size:20px;font-weight:600;color:#1c3a1c;margin:14px 0 8px">Thanks for contributing!</div><p style="font-size:13px;color:#888;line-height:1.6">GitHub opened to complete the submission.<br>The team will review your suggestion.</p><div style="margin-top:18px"><button class="btn-submit-m" style="padding:10px 28px" onclick="closeModal()">Close</button></div></div>`;
+}
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800);}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();if(e.key==="/"&&document.activeElement.tagName!=="INPUT"&&document.activeElement.tagName!=="TEXTAREA"){e.preventDefault();document.getElementById("search").focus();}});
+reset();
+</script>
+</body>
+</html>
