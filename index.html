@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Low-Cost Ecology — Open Resources</title>
+<title>Ecology on a Budget — Open Resources</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
 <style>
@@ -30,6 +30,7 @@ h1 span{color:#7fbf6f}
 .search-wrap i{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#888;font-size:16px}
 .search-wrap input{width:100%;padding:9px 12px 9px 34px;border:1.5px solid #dde0da;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;background:#f8f9f6;outline:none}
 .search-wrap input:focus{border-color:#4a8c3f;background:#fff}
+.search-hint{font-size:11px;font-family:'IBM Plex Mono',monospace;color:#aaa;white-space:nowrap}
 .main{max-width:960px;margin:0 auto;padding:24px 32px 64px}
 .breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;color:#888;margin-bottom:18px;flex-wrap:wrap}
 .breadcrumb span{cursor:pointer;color:#888}
@@ -37,6 +38,8 @@ h1 span{color:#7fbf6f}
 .breadcrumb .sep{color:#ccc}
 .breadcrumb .active{color:#1a1a16;font-weight:500}
 .level-label{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:#aaa;margin-bottom:12px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid #e5e8e2;border-radius:8px;padding:7px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555;cursor:pointer;margin-bottom:16px;transition:all .15s}
+.back-btn:hover{border-color:#4a8c3f;color:#1c3a1c}
 .org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:8px}
 .org-card{background:#fff;border:1.5px solid #e5e8e2;border-radius:14px;padding:18px 14px 14px;cursor:pointer;text-align:center;transition:all .15s}
 .org-card:hover{border-color:#4a8c3f;box-shadow:0 4px 16px rgba(74,140,63,0.1)}
@@ -59,7 +62,7 @@ h1 span{color:#7fbf6f}
 .topic-pill{padding:6px 14px;border-radius:20px;border:1.5px solid #e5e8e2;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer;color:#777;transition:all .12s}
 .topic-pill:hover{border-color:#534AB7;color:#534AB7}
 .topic-pill.active{background:#534AB7;border-color:#534AB7;color:#fff}
-.resource-list{display:flex;flex-direction:column;gap:10px}
+.resource-list{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
 .rcard{background:#fff;border:1.5px solid #e5e8e2;border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:border-color .15s}
 .rcard:hover{border-color:#c8dcc4}
 .rdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:5px}
@@ -70,6 +73,10 @@ h1 span{color:#7fbf6f}
 .badge{padding:2px 9px;border-radius:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;white-space:nowrap}
 .b-db{background:#E1F5EE;color:#085041;border:1px solid #5DCAA5}
 .b-ds{background:#E6F1FB;color:#0C447C;border:1px solid #85B7EB}
+.b-pl{background:#E8F5E9;color:#1B5E20;border:1px solid #81C784}
+.b-rp{background:#FFF3E0;color:#E65100;border:1px solid #FFB74D}
+.b-nw{background:#F3E5F5;color:#4A148C;border:1px solid #CE93D8}
+.b-ct{background:#E0F7FA;color:#006064;border:1px solid #4DD0E1}
 .b-sw{background:#EEEDFE;color:#3C3489;border:1px solid #AFA9EC}
 .b-img{background:#FAEEDA;color:#633806;border:1px solid #EF9F27}
 .b-topic{background:#f4f6f2;color:#666;border:1px solid #dde0da}
@@ -81,8 +88,29 @@ h1 span{color:#7fbf6f}
 .rlink:hover{color:#27500A;text-decoration:underline}
 .rpaper{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#888;text-decoration:none}
 .rpaper:hover{color:#534AB7}
+.rlast{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#bbb}
 .empty{text-align:center;padding:56px 20px;color:#aaa}
 .empty i{font-size:36px;margin-bottom:12px;display:block}
+
+/* Comparison table */
+.table-section{margin-top:8px}
+.table-toggle{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid #e5e8e2;border-radius:8px;padding:7px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#555;cursor:pointer;margin-bottom:14px;transition:all .15s}
+.table-toggle:hover{border-color:#4a8c3f;color:#1c3a1c}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1.5px solid #e5e8e2;background:#fff;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#1c3a1c;color:#c8e6c4;font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.08em;padding:10px 12px;text-align:left;white-space:nowrap;position:sticky;top:0}
+td{padding:9px 12px;border-bottom:1px solid #f0ece4;color:#444;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#f8f9f6}
+td a{color:#3B6D11;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:10px}
+td a:hover{text-decoration:underline}
+.access-free{color:#085041;background:#E1F5EE;padding:1px 7px;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:10px}
+.access-restricted{color:#633806;background:#FAEEDA;padding:1px 7px;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:10px}
+.status-maintained{color:#085041}
+.status-archived{color:#633806}
+.status-inactive{color:#aaa}
+
+/* Modal */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:center;justify-content:center;padding:24px}
 .overlay.open{display:flex}
 .modal{background:#fff;border-radius:18px;padding:32px;max-width:460px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.18);position:relative;max-height:90vh;overflow-y:auto}
@@ -99,58 +127,122 @@ h1 span{color:#7fbf6f}
 .btn-cancel-m{flex:1;padding:10px;background:#f4f6f2;border:none;border-radius:8px;cursor:pointer;font-size:13px;color:#777}
 .btn-submit-m{flex:2;padding:10px;background:#1c3a1c;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500}
 .btn-submit-m:hover{background:#2e5c28}
+
+/* Loading */
+.loading{text-align:center;padding:64px 20px;color:#aaa}
+.loading i{font-size:32px;display:block;margin-bottom:12px;animation:spin 1s linear infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:#1c3a1c;color:#c8e6c4;padding:11px 24px;border-radius:30px;font-family:'IBM Plex Mono',monospace;font-size:12px;box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:300;transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap}
 #toast.show{transform:translateX(-50%) translateY(0)}
 footer{background:#1c3a1c;color:#7fbf6f;text-align:center;padding:28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.9}
 footer a{color:#7fbf6f}
-@media(max-width:600px){header{padding:28px 16px 20px}.controls-inner{padding:10px 16px}.main{padding:18px 16px 48px}}
+@media(max-width:600px){header{padding:28px 16px 20px}.controls-inner{padding:10px 16px}.main{padding:18px 16px 48px}.search-hint{display:none}}
 </style>
 </head>
 <body>
 <header>
   <div class="header-inner">
-    <div class="eyebrow">low-cost-ecology · open resources</div>
-    <h1>Ecology on a<br><span>budget</span></h1>
+    <div class="eyebrow">ecology on a budget · open resources · pilot version</div>
+    <h1>Ecology on a<br><span>Budget</span></h1>
     <p class="subtitle">A curated list of free or low-cost databases, software, and images for ecological research. Companion resource to the paper: Chiuffo et al. (Year) Ecology on a budget. Journal</p>
     <div class="header-actions">
       <button class="btn-green" onclick="openModal()"><i class="ti ti-plus"></i> Suggest a resource</button>
       <a class="btn-ghost" href="https://github.com/agostinatorresm/LowCostEcology" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
     </div>
     <div class="hstats">
-      <div><div class="hstat-val" id="stat-total">26</div><div class="hstat-label">resources</div></div>
-      <div><div class="hstat-val">100%</div><div class="hstat-label">free</div></div>
-      <div><div class="hstat-val">5</div><div class="hstat-label">organism types</div></div>
+      <div><div class="hstat-val" id="stat-total">—</div><div class="hstat-label">resources</div></div>
+      <div><div class="hstat-val">100%</div><div class="hstat-label">free or low-cost</div></div>
+      <div><div class="hstat-val" id="stat-orgs">—</div><div class="hstat-label">organism types</div></div>
     </div>
   </div>
 </header>
+
 <div class="controls">
   <div class="controls-inner">
     <div class="search-wrap">
       <i class="ti ti-search"></i>
-      <input type="search" id="search" placeholder="Search resources, tags, topics… (press / to focus)" oninput="onSearch()"/>
+      <input type="search" id="search" placeholder="Search resources, tags, topics…" oninput="onSearch()"/>
     </div>
+    <span class="search-hint">Use <strong>+</strong> to combine: plants + traits</span>
   </div>
 </div>
+
 <main class="main">
   <div class="breadcrumb" id="breadcrumb"></div>
+
   <div id="view-organism">
     <div class="level-label">Level 1 · Organism type</div>
     <div class="org-grid" id="org-grid"></div>
   </div>
+
   <div id="view-type" style="display:none">
+    <button class="back-btn" onclick="reset()"><i class="ti ti-arrow-left"></i> Back to organisms</button>
     <div class="level-label">Level 2 · Resource type</div>
     <div class="type-grid" id="type-grid"></div>
   </div>
+
   <div id="view-topic" style="display:none">
+    <button class="back-btn" onclick="goOrg()"><i class="ti ti-arrow-left"></i> Back to resource types</button>
     <div class="level-label">Level 3 · Ecological topic</div>
     <div class="topic-row" id="topic-row"></div>
     <div class="resource-list" id="resource-list"></div>
+    <div class="table-section" id="table-section"></div>
   </div>
+
   <div id="view-search" style="display:none">
     <div class="level-label" id="search-label"></div>
     <div class="resource-list" id="search-list"></div>
+    <div class="table-section" id="search-table-section"></div>
   </div>
 </main>
+
+<!-- ABOUT SECTION -->
+<div style="background:#f0f4ee;border-top:1px solid #d4e0d0;padding:48px 32px 36px">
+  <div style="max-width:960px;margin:0 auto">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;margin-bottom:36px">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:#7fbf6f;margin-bottom:6px">About this resource</div>
+        <div style="font-size:20px;font-weight:600;color:#1c3a1c;margin-bottom:8px">Ecology on a Budget</div>
+        <div style="font-size:13px;color:#555;max-width:480px;line-height:1.7">This is a <strong>pilot version</strong> of an open, community-driven resource compiling free and low-cost ecological databases, software, and tools. We welcome contributions, corrections, and suggestions from the community.</div>
+      </div>
+      <a href="mailto:agostinatorresm@gmail.com?subject=Ecology on a Budget — Feedback" style="display:inline-flex;align-items:center;gap:8px;background:#1c3a1c;color:#c8e6c4;padding:12px 22px;border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;height:fit-content">
+        <i class="ti ti-mail"></i> Find a problem? Write us!
+      </a>
+    </div>
+    <div style="border-top:1px solid #d4e0d0;padding-top:28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:#7fbf6f;margin-bottom:20px">The team</div>
+      <div style="margin-bottom:20px">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:#aaa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Project lead</div>
+        <!-- EDIT LINK: replace # with the person's URL, or remove the <a> tags to remove the link -->
+        <div style="font-size:14px;font-weight:600;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Mariana C. Chiuffo</a></div>
+        <div style="font-size:12px;color:#666;line-height:1.6">INIBIOMA, Universidad Nacional del Comahue, CONICET, Bariloche, Argentina<br>Institute of Biochemistry and Biology, University of Potsdam, Germany</div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:#aaa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Web maintainer</div>
+        <!-- EDIT LINK: replace # with the person's URL -->
+        <div style="font-size:14px;font-weight:600;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Agostina Torres</a> <span style="font-size:12px;font-weight:400;color:#888">with the help of <a href="https://claude.ai" target="_blank" style="color:#7fbf6f;text-decoration:none">Claude (Anthropic)</a></span></div>
+        <div style="font-size:12px;color:#666;line-height:1.6">INIBIOMA, Universidad Nacional del Comahue, CONICET, Bariloche, Argentina<br>Institute of Integrative Biology, ETH Zürich, Switzerland</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:#aaa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px">Valuable collaborators</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
+          <!-- EDIT LINKS: replace # with each person's URL (Google Scholar, ResearchGate, institutional page, etc.) -->
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Noelia Barrios García</a></div><div style="font-size:11px;color:#777;line-height:1.5">Rubenstein School of Environment and Natural Resources, University of Vermont, Burlington, VT, USA</div></div>
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Maira Cardoso</a></div><div style="font-size:11px;color:#777;line-height:1.5">Institute of Biochemistry and Biology, University of Potsdam, Germany</div></div>
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Julieta Mallerman</a></div><div style="font-size:11px;color:#777;line-height:1.5">IPATEC, Universidad Nacional del Comahue – CONICET, Bariloche, Argentina</div></div>
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Lucía Martínez Retta</a></div><div style="font-size:11px;color:#777;line-height:1.5">CENAC – PNNH, CONICET, Bariloche, Argentina</div></div>
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Jaime Moyano</a></div><div style="font-size:11px;color:#777;line-height:1.5">INIBIOMA, Universidad Nacional del Comahue, CONICET, Bariloche, Argentina</div></div>
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">María Fernanda Reyes</a></div><div style="font-size:11px;color:#777;line-height:1.5">Instituto de Tierras, Agua y Medio Ambiente, Universidad Nacional del Comahue, CONICET, Neuquén, Argentina</div></div>
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">María Paz Tapella</a></div><div style="font-size:11px;color:#777;line-height:1.5">INIBIOMA, Universidad Nacional del Comahue, CONICET, Bariloche, Argentina</div></div>
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Mariano A. Rodríguez-Cabal</a></div><div style="font-size:11px;color:#777;line-height:1.5">Rubenstein School of Environment and Natural Resources &amp; Environment, University of Vermont, Burlington, VT, USA</div></div>
+          <div><div style="font-size:13px;font-weight:500;color:#1c3a1c"><a href="#" style="color:#1c3a1c;text-decoration:none">Martín A. Nuñez</a></div><div style="font-size:11px;color:#777;line-height:1.5">Department of Biology and Biochemistry, University of Houston, Houston, TX, USA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">x</button>
@@ -158,177 +250,311 @@ footer a{color:#7fbf6f}
   </div>
 </div>
 <div id="toast"></div>
+
 <footer>
   Open resource · <a href="https://github.com/agostinatorresm/LowCostEcology" target="_blank">GitHub</a> · CC BY 4.0 License<br>
   Missing a resource? <button onclick="openModal()" style="background:none;border:none;color:#7fbf6f;cursor:pointer;font-family:inherit;font-size:inherit;text-decoration:underline">Suggest one</button>
 </footer>
+
 <script>
-/* ============================================================
-   RESOURCE DATA
-   To add a resource: copy one entry and edit the fields.
-   org options:    plants | animals | fungi | multi | env
-   type options:   Database | Dataset | Software | Images
-   ============================================================ */
-var RES = [
-  {name:"BIEN",org:"plants",type:"Database",topic:"distribution",desc:"Occurrences, inventories, traits, and phylogenies of plants from the New World.",url:"https://bien.nceas.ucsb.edu/bien/",paper:"https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12861",tags:["plants","phylogeny","New World"]},
-  {name:"CESTES",org:"multi",type:"Database",topic:"traits",desc:"80 datasets of empirical trait-environment relationships from 1996 to 2018.",url:"https://icestes.github.io/",paper:"https://www.nature.com/articles/s41597-019-0344-7",tags:["traits","environment","multivariate"]},
-  {name:"CoRRE Trait Data",org:"plants",type:"Dataset",topic:"traits",desc:"17 categorical and continuous traits for 4079 grassland species worldwide.",url:"https://portal.edirepository.org/nis/mapbrowse?packageid=edi.1533.3",paper:"https://www.nature.com/articles/s41597-024-03637-x",tags:["traits","grasslands","global"]},
-  {name:"FRED",org:"plants",type:"Database",topic:"traits",desc:"Fine-root functional traits organized in a common framework.",url:"https://roots.ornl.gov/",paper:"https://nph.onlinelibrary.wiley.com/doi/full/10.1111/nph.14486",tags:["roots","soil","functional"]},
-  {name:"FungalRoot",org:"fungi",type:"Database",topic:"symbiosis",desc:"Global database of plant mycorrhizal associations including colonization intensity.",url:"https://www.gbif.org/dataset/744edc21-8dd2-474e-8a0b-b8c3d56a3c2d",paper:"https://nph.onlinelibrary.wiley.com/doi/epdf/10.1111/nph.16569",tags:["mycorrhiza","colonization","roots"]},
-  {name:"GloBI",org:"multi",type:"Database",topic:"interactions",desc:"Open access to biotic interaction data: predator-prey, pollinator-plant, parasite-host.",url:"https://www.globalbioticinteractions.org/",paper:"https://www.sciencedirect.com/science/article/pii/S1574954114001125",tags:["interactions","networks","predation"]},
-  {name:"MycoDB",org:"fungi",type:"Database",topic:"symbiosis",desc:"Plant biomass responses to mycorrhizal inoculation with meta-analysis metrics.",url:"https://doi.org/10.5061/dryad.723m1",paper:"https://www.nature.com/articles/sdata201628",tags:["mycorrhiza","biomass","meta-analysis"]},
-  {name:"Open Traits Network",org:"multi",type:"Dataset",topic:"traits",desc:"Standardizes and integrates trait data across all organisms.",url:"https://opentraits.org/datasets.html",paper:"",tags:["traits","integration","all organisms"]},
-  {name:"PLANTS Database",org:"plants",type:"Database",topic:"taxonomy",desc:"Vascular plants, mosses, and lichens of the U.S. and territories.",url:"https://plants.usda.gov/home",paper:"",tags:["taxonomy","USA","flora"]},
-  {name:"Seed Information Database",org:"plants",type:"Database",topic:"traits",desc:"Global compilation of seed biological trait data.",url:"https://ser-sid.org/",paper:"",tags:["seeds","traits","reproduction"]},
-  {name:"TRY",org:"plants",type:"Database",topic:"traits",desc:"Global database of curated plant traits. One of the most widely used in functional ecology.",url:"https://www.try-db.org/TryWeb/Home.php",paper:"https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2486.2011.02451.x",tags:["traits","functional ecology","global"]},
-  {name:"Global Aridity Index",org:"env",type:"Database",topic:"climate",desc:"Global aridity index and potential evapotranspiration at high spatial resolution v2.",url:"https://figshare.com/articles/dataset/Global_Aridity_Index_and_Potential_Evapotranspiration_ET0_Climate_Database_v2/7504448/6",paper:"",tags:["aridity","evapotranspiration","raster"]},
-  {name:"WorldClim",org:"env",type:"Database",topic:"climate",desc:"High-resolution global climate data with bioclimatic variables for niche modeling.",url:"https://www.worldclim.org",paper:"",tags:["climate","bioclimatic","niche modeling"]},
-  {name:"GBIF",org:"multi",type:"Database",topic:"biodiversity",desc:"Global platform with free access to species occurrence records.",url:"https://www.gbif.org/",paper:"",tags:["occurrences","biodiversity","global"]},
-  {name:"BioTIME",org:"multi",type:"Database",topic:"biodiversity",desc:"Global database of time series of assemblages to quantify biodiversity change.",url:"https://biotime.st-andrews.ac.uk/",paper:"",tags:["time series","change","assemblages"]},
-  {name:"Web of Life",org:"multi",type:"Database",topic:"interactions",desc:"Ecological network database: pollination, herbivory, host-parasite interactions.",url:"https://www.web-of-life.es/",paper:"",tags:["networks","pollination","herbivory"]},
-  {name:"GenBank",org:"multi",type:"Database",topic:"genetics",desc:"NIH genetic sequence database covering all organisms.",url:"https://www.ncbi.nlm.nih.gov/genbank/",paper:"",tags:["DNA","sequences","bioinformatics"]},
-  {name:"Movebank",org:"animals",type:"Database",topic:"movement",desc:"Global repository of animal movement and migration data with visualization tools.",url:"https://www.movebank.org/cms/movebank-main",paper:"",tags:["telemetry","migration","wildlife"]},
-  {name:"eBird",org:"animals",type:"Database",topic:"biodiversity",desc:"Global bird observation database maintained by Cornell Lab. API and downloadable data.",url:"https://ebird.org/home",paper:"",tags:["birds","citizen science","ornithology"]},
-  {name:"GloNAF",org:"plants",type:"Database",topic:"invasions",desc:"Naturalized alien plant species lists by region. Key for biological invasion studies.",url:"https://glonaf.org/",paper:"https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecy.2542",tags:["invasive","naturalization","flora"]},
-  {name:"POWO",org:"plants",type:"Database",topic:"taxonomy",desc:"Taxonomy, distribution, traits, and uses of vascular plants worldwide (Kew).",url:"https://powo.science.kew.org/",paper:"",tags:["taxonomy","Kew","distribution"]},
-  {name:"InvaCost",org:"multi",type:"Database",topic:"invasions",desc:"Global estimation of the economic cost of biological invasions per species.",url:"https://invacost.fr/en/accueil/",paper:"https://www.nature.com/articles/s41597-020-00586-z",tags:["invasions","economics","policy"]},
-  {name:"KNB",org:"multi",type:"Dataset",topic:"repository",desc:"International repository for ecological and environmental research data (NSF 1998).",url:"https://knb.ecoinformatics.org/data",paper:"",tags:["repository","NSF","open access"]},
-  {name:"EDI",org:"multi",type:"Dataset",topic:"repository",desc:"Environmental data following FAIR principles for accessibility and reusability.",url:"https://portal.edirepository.org/nis/home.jsp",paper:"",tags:["FAIR","repository","reusable"]},
-  {name:"NEON",org:"multi",type:"Dataset",topic:"monitoring",desc:"Network of U.S. field sites with standardized terrestrial and aquatic ecological data (NSF).",url:"https://data.neonscience.org/data-products/explore",paper:"",tags:["monitoring","USA","terrestrial"]},
-  {name:"MammalBase",org:"animals",type:"Database",topic:"traits",desc:"Traits, measurements, and diets of mammal species for macroecology and paleontology.",url:"https://www.mammalbase.net/mb",paper:"",tags:["mammals","diet","macroecology"]}
-];
+// ============================================================
+// DATA — loaded live from Google Sheets
+// ============================================================
+var SHEETS_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3036NJP4iyv6UcHoGLHGfeyLEEUhhu4xnLULMmXh6rKS86O_av-wfcKGxaqYlYlZoSHTmHBjbJIWT/pub?gid=553414337&single=true&output=csv";
 
 var ORGS = [
   {id:"plants",label:"Plants",icon:"ti-plant-2",color:"#3B6D11"},
   {id:"animals",label:"Animals",icon:"ti-paw",color:"#854F0B"},
   {id:"fungi",label:"Fungi",icon:"ti-mushroom",color:"#993C1D"},
-  {id:"multi",label:"Multi-organism",icon:"ti-world",color:"#185FA5"},
-  {id:"env",label:"Environment / Climate",icon:"ti-cloud",color:"#534AB7"}
+  {id:"multi-taxa",label:"Multi-taxa",icon:"ti-world",color:"#185FA5"},
+  {id:"environmental",label:"Environment / Climate",icon:"ti-cloud",color:"#534AB7"},
+  {id:"human",label:"Human dimensions",icon:"ti-users",color:"#8B4513"},
+  {id:"microorganisms",label:"Microorganisms",icon:"ti-circle-dot",color:"#6B238E"}
 ];
-var TYPES = [
-  {id:"Database",label:"Database",icon:"ti-database",bc:"b-db"},
-  {id:"Dataset",label:"Dataset",icon:"ti-file-spreadsheet",bc:"b-ds"},
-  {id:"Software",label:"Software",icon:"ti-terminal-2",bc:"b-sw"},
-  {id:"Images",label:"Images",icon:"ti-satellite",bc:"b-img"}
-];
-var dotColor = {plants:"#3B6D11",animals:"#854F0B",fungi:"#993C1D",multi:"#185FA5",env:"#534AB7"};
+var dotColor = {plants:"#3B6D11",animals:"#854F0B",fungi:"#993C1D","multi-taxa":"#185FA5",environmental:"#534AB7",human:"#8B4513",microorganisms:"#6B238E"};
+var TYPE_BC = {Database:"b-db",Dataset:"b-ds",Platform:"b-pl",Repository:"b-rp",Network:"b-nw",Catalog:"b-ct",Software:"b-sw",Images:"b-img"};
+
+var RES = [];
 var selOrg=null, selType=null, selTopic=null;
+var tableVisible = false;
 
-function orgCount(id){return RES.filter(function(r){return r.org===id;}).length;}
-function typeCount(o,t){return RES.filter(function(r){return r.org===o&&r.type===t;}).length;}
-function getTopics(o,t){var s={};RES.filter(function(r){return r.org===o&&r.type===t;}).forEach(function(r){s[r.topic]=1;});return Object.keys(s).sort();}
-function getRes(o,t,tp){return RES.filter(function(r){return r.org===o&&r.type===t&&(!tp||r.topic===tp);});}
+// ============================================================
+// CSV PARSER
+// ============================================================
+function parseCSV(text) {
+  var lines = text.trim().split("\n");
+  var headers = splitCSVLine(lines[0]);
+  var result = [];
+  for (var i = 1; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
+    var vals = splitCSVLine(lines[i]);
+    var obj = {};
+    for (var j = 0; j < headers.length; j++) {
+      obj[headers[j].trim()] = (vals[j] || "").trim();
+    }
+    if (!obj.abbr && !obj.full_name) continue;
+    // Normalize tags (semicolon separated in sheet)
+    obj.tags = obj.tags ? obj.tags.split(";").map(function(t){return t.trim();}).filter(Boolean) : [];
+    result.push(obj);
+  }
+  return result;
+}
 
-function buildOrgs(){
-  document.getElementById("org-grid").innerHTML=ORGS.map(function(o){
-    var c=orgCount(o.id); if(!c)return"";
+function splitCSVLine(line) {
+  var result = [], cur = "", inQ = false;
+  for (var i = 0; i < line.length; i++) {
+    var c = line[i];
+    if (c === '"') { inQ = !inQ; }
+    else if (c === ',' && !inQ) { result.push(cur); cur = ""; }
+    else { cur += c; }
+  }
+  result.push(cur);
+  return result;
+}
+
+// ============================================================
+// LOAD DATA
+// ============================================================
+function loadData() {
+  document.getElementById("org-grid").innerHTML = '<div class="loading"><i class="ti ti-loader"></i>Loading resources from database…</div>';
+  fetch(SHEETS_CSV)
+    .then(function(r) { return r.text(); })
+    .then(function(text) {
+      RES = parseCSV(text);
+      document.getElementById("stat-total").textContent = RES.length;
+      var orgIds = {};
+      RES.forEach(function(r){ if(r.data_subject) orgIds[r.data_subject]=1; });
+      document.getElementById("stat-orgs").textContent = Object.keys(orgIds).length;
+      reset();
+    })
+    .catch(function() {
+      document.getElementById("org-grid").innerHTML = '<div class="empty"><i class="ti ti-wifi-off"></i><p>Could not load resources. Please check your internet connection.</p></div>';
+    });
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function orgCount(id) { return RES.filter(function(r){return r.data_subject===id;}).length; }
+function typeCount(o,t) { return RES.filter(function(r){return r.data_subject===o&&r.resource_type===t;}).length; }
+function getTopics(o,t) { var s={}; RES.filter(function(r){return r.data_subject===o&&r.resource_type===t;}).forEach(function(r){if(r.topic)s[r.topic]=1;}); return Object.keys(s).sort(); }
+function getRes(o,t,tp) { return RES.filter(function(r){return r.data_subject===o&&r.resource_type===t&&(!tp||r.topic===tp);}); }
+
+function matchesQuery(r, q) {
+  var text = ([r.abbr,r.full_name,r.description,r.topic,r.data_subject,r.resource_type,r.tags.join(" "),r.geographic_scope,r.scale]).join(" ").toLowerCase();
+  return text.indexOf(q) >= 0;
+}
+
+// ============================================================
+// BUILD UI
+// ============================================================
+function buildOrgs() {
+  document.getElementById("org-grid").innerHTML = ORGS.map(function(o){
+    var c = orgCount(o.id); if(!c) return "";
     return '<div class="org-card'+(selOrg===o.id?" active":"")+'" onclick="selectOrg(\''+o.id+'\')">'
       +'<div class="org-icon"><i class="ti '+o.icon+'"></i></div>'
       +'<div class="org-name">'+o.label+'</div>'
       +'<div class="org-count">'+c+' resources</div></div>';
   }).join("");
 }
-function buildTypes(){
-  document.getElementById("type-grid").innerHTML=TYPES.map(function(t){
-    var c=typeCount(selOrg,t.id); if(!c)return"";
-    return '<div class="type-card'+(selType===t.id?" active":"")+'" onclick="selectType(\''+t.id+'\')">'
-      +'<div class="type-icon"><i class="ti '+t.icon+'"></i></div>'
-      +'<div><div class="type-name">'+t.label+'</div><div class="type-count">'+c+' resources</div></div></div>';
+
+function buildTypes() {
+  var types = {};
+  RES.filter(function(r){return r.data_subject===selOrg;}).forEach(function(r){if(r.resource_type)types[r.resource_type]=1;});
+  document.getElementById("type-grid").innerHTML = Object.keys(types).map(function(t){
+    var c = typeCount(selOrg,t);
+    var bc = TYPE_BC[t]||"b-db";
+    return '<div class="type-card'+(selType===t?" active":"")+'" onclick="selectType(\''+t+'\')">'
+      +'<div class="type-icon"><span class="badge '+bc+'" style="font-size:11px">'+t+'</span></div>'
+      +'<div><div class="type-name">'+t+'</div><div class="type-count">'+c+' resources</div></div></div>';
   }).join("");
 }
-function buildTopics(){
-  var topics=getTopics(selOrg,selType);
-  document.getElementById("topic-row").innerHTML=
+
+function buildTopics() {
+  var topics = getTopics(selOrg, selType);
+  document.getElementById("topic-row").innerHTML =
     '<button class="topic-pill'+(selTopic===null?" active":"")+'" onclick="selectTopic(null)">All</button>'+
     topics.map(function(t){
-      return '<button class="topic-pill'+(selTopic===t?" active":"")+'" onclick="selectTopic(\''+t+'\')">'+t+'</button>';
+      return '<button class="topic-pill'+(selTopic===t?" active":"")+'" onclick="selectTopic(\''+encodeForAttr(t)+'\')">'+t+'</button>';
     }).join("");
 }
-function buildCards(cid,items){
-  if(!items.length){
-    document.getElementById(cid).innerHTML='<div class="empty"><i class="ti ti-mood-empty"></i><p>No results found</p></div>';
+
+function encodeForAttr(s) { return s.replace(/'/g,"\\'"); }
+
+function buildCards(cid, items) {
+  if (!items.length) {
+    document.getElementById(cid).innerHTML = '<div class="empty"><i class="ti ti-mood-empty"></i><p>No results found</p></div>';
     return;
   }
-  document.getElementById(cid).innerHTML=items.map(function(r){
-    var tp=null; for(var i=0;i<TYPES.length;i++){if(TYPES[i].id===r.type){tp=TYPES[i];break;}}
-    var bc=tp?tp.bc:"b-db";
-    var tagsHtml=r.tags.map(function(t){return '<span class="rtag">'+t+'</span>';}).join("");
-    var paperHtml=r.paper?'<a class="rpaper" href="'+r.paper+'" target="_blank">paper</a>':"";
+  document.getElementById(cid).innerHTML = items.map(function(r){
+    var bc = TYPE_BC[r.resource_type]||"b-db";
+    var color = dotColor[r.data_subject]||"#aaa";
+    var tagsHtml = r.tags.map(function(t){return '<span class="rtag">'+t+'</span>';}).join("");
+    var paperHtml = r.paper ? '<a class="rpaper" href="'+r.paper+'" target="_blank">paper</a>' : "";
+    var lastHtml = r.last_checked ? '<span class="rlast">checked: '+r.last_checked+'</span>' : "";
+    var accessHtml = r.access === "restricted" ? '<span style="color:#b44a2a;font-size:10px;font-family:monospace">restricted</span>' : "";
     return '<div class="rcard">'
-      +'<div class="rdot" style="background:'+dotColor[r.org]+'"></div>'
+      +'<div class="rdot" style="background:'+color+'"></div>'
       +'<div class="rbody">'
-      +'<div class="rtop"><div class="rname">'+r.name+'</div>'
-      +'<div class="rbadges"><span class="badge '+bc+'">'+r.type+'</span>'
-      +'<span class="badge b-topic">'+r.topic+'</span></div></div>'
-      +'<div class="rdesc">'+r.desc+'</div>'
+      +'<div class="rtop"><div class="rname">'+r.full_name+(r.abbr&&r.abbr!==r.full_name?' <span style="font-weight:400;color:#888;font-size:13px">('+r.abbr+')</span>':'')+'</div>'
+      +'<div class="rbadges"><span class="badge '+bc+'">'+r.resource_type+'</span>'
+      +'<span class="badge b-topic">'+r.topic+'</span>'
+      +(r.scale?'<span class="badge b-topic">'+r.scale+'</span>':'')
+      +'</div></div>'
+      +'<div class="rdesc">'+r.description+'</div>'
       +'<div class="rfooter"><div class="rtags">'+tagsHtml+'</div>'
-      +'<a class="rlink" href="'+r.url+'" target="_blank">visit</a>'
+      +accessHtml+lastHtml
+      +'<a class="rlink" href="'+r.url+'" target="_blank">visit ↗</a>'
       +paperHtml+'</div></div></div>';
   }).join("");
 }
-function buildBreadcrumb(){
-  var org=null; for(var i=0;i<ORGS.length;i++){if(ORGS[i].id===selOrg){org=ORGS[i];break;}}
-  var p=['<span onclick="reset()">all</span>'];
-  if(selOrg)p.push('<span class="sep">/</span><span onclick="goOrg()">'+org.label+'</span>');
-  if(selType)p.push('<span class="sep">/</span><span onclick="goType()">'+selType+'</span>');
-  if(selTopic)p.push('<span class="sep">/</span><span class="active">'+selTopic+'</span>');
-  document.getElementById("breadcrumb").innerHTML=p.join("");
+
+function buildTable(sectionId, items) {
+  if (!items.length) { document.getElementById(sectionId).innerHTML = ""; return; }
+  var html = '<button class="table-toggle" onclick="toggleTable(\''+sectionId+'\')">'
+    +'<i class="ti ti-table" id="table-icon-'+sectionId+'"></i> '
+    +'<span id="table-label-'+sectionId+'">Show comparison table</span>'
+    +'</button>'
+    +'<div id="table-wrap-'+sectionId+'" style="display:none">'
+    +'<div class="table-wrap"><table>'
+    +'<thead><tr>'
+    +'<th>Name</th><th>Type</th><th>Topic</th><th>Scale</th><th>Geographic scope</th>'
+    +'<th>Data structure</th><th>Access</th><th>Language</th><th>Status</th><th>Last checked</th><th>Paper</th>'
+    +'</tr></thead><tbody>'
+    + items.map(function(r){
+      var statusClass = r.status==="Maintained"?"status-maintained":r.status==="Archived"?"status-archived":"status-inactive";
+      var accessHtml = r.access==="free"
+        ? '<span class="access-free">free</span>'
+        : '<span class="access-restricted">'+(r.access||"—")+'</span>';
+      return '<tr>'
+        +'<td><strong>'+r.abbr+'</strong><br><span style="color:#888;font-size:11px">'+r.full_name+'</span></td>'
+        +'<td>'+r.resource_type+'</td>'
+        +'<td>'+r.topic+'</td>'
+        +'<td>'+(r.scale||"—")+'</td>'
+        +'<td>'+(r.geographic_scope||"—")+'</td>'
+        +'<td>'+(r.data_structure||"—")+'</td>'
+        +'<td>'+accessHtml+'</td>'
+        +'<td>'+(r.language||"—")+'</td>'
+        +'<td class="'+statusClass+'">'+(r.status||"—")+'</td>'
+        +'<td>'+(r.last_checked||"—")+'</td>'
+        +'<td>'+(r.paper?'<a href="'+r.paper+'" target="_blank">link</a>':"—")+'</td>'
+        +'</tr>';
+    }).join("")
+    +'</tbody></table></div></div>';
+  document.getElementById(sectionId).innerHTML = html;
 }
-function show(n){
-  var views=["organism","type","topic","search"];
-  for(var i=0;i<views.length;i++){
-    document.getElementById("view-"+views[i]).style.display=views[i]===n?"":"none";
+
+function toggleTable(sectionId) {
+  var wrap = document.getElementById("table-wrap-"+sectionId);
+  var label = document.getElementById("table-label-"+sectionId);
+  var icon = document.getElementById("table-icon-"+sectionId);
+  if (wrap.style.display === "none") {
+    wrap.style.display = "block";
+    label.textContent = "Hide comparison table";
+    icon.className = "ti ti-table-off";
+  } else {
+    wrap.style.display = "none";
+    label.textContent = "Show comparison table";
+    icon.className = "ti ti-table";
   }
 }
-function reset(){selOrg=null;selType=null;selTopic=null;document.getElementById("search").value="";buildOrgs();buildBreadcrumb();show("organism");}
-function selectOrg(id){selOrg=id;selType=null;selTopic=null;buildOrgs();buildTypes();buildBreadcrumb();show("type");}
-function selectType(id){selType=id;selTopic=null;buildTypes();buildTopics();buildCards("resource-list",getRes(selOrg,selType,null));buildBreadcrumb();show("topic");}
-function selectTopic(t){selTopic=t;buildTopics();buildCards("resource-list",getRes(selOrg,selType,t));buildBreadcrumb();}
-function goOrg(){selType=null;selTopic=null;buildTypes();buildBreadcrumb();show("type");}
-function goType(){selTopic=null;buildTopics();buildCards("resource-list",getRes(selOrg,selType,null));buildBreadcrumb();show("topic");}
-function onSearch(){
-  var q=document.getElementById("search").value.toLowerCase().trim();
-  if(!q){reset();return;}
-  var found=RES.filter(function(r){
-    return r.name.toLowerCase().indexOf(q)>=0||r.desc.toLowerCase().indexOf(q)>=0||
-      r.topic.toLowerCase().indexOf(q)>=0||r.tags.some(function(t){return t.toLowerCase().indexOf(q)>=0;});
+
+function buildBreadcrumb() {
+  var org = null;
+  for (var i=0;i<ORGS.length;i++){if(ORGS[i].id===selOrg){org=ORGS[i];break;}}
+  var p = ['<span onclick="reset()">all</span>'];
+  if (selOrg) p.push('<span class="sep">/</span><span onclick="goOrg()">'+org.label+'</span>');
+  if (selType) p.push('<span class="sep">/</span><span onclick="goType()">'+selType+'</span>');
+  if (selTopic) p.push('<span class="sep">/</span><span class="active">'+selTopic+'</span>');
+  document.getElementById("breadcrumb").innerHTML = p.join("");
+}
+
+function show(n) {
+  ["organism","type","topic","search"].forEach(function(v){
+    document.getElementById("view-"+v).style.display = v===n?"":"none";
   });
-  document.getElementById("search-label").textContent=found.length+' result'+(found.length!==1?'s':'')+' for "'+q+'"';
-  buildCards("search-list",found);
-  document.getElementById("breadcrumb").innerHTML='<span onclick="reset()">all</span><span class="sep">/</span><span class="active">search: "'+q+'"</span>';
+}
+
+function reset() {
+  selOrg=null; selType=null; selTopic=null;
+  document.getElementById("search").value="";
+  buildOrgs(); buildBreadcrumb(); show("organism");
+}
+
+function selectOrg(id) {
+  selOrg=id; selType=null; selTopic=null;
+  buildOrgs(); buildTypes(); buildBreadcrumb(); show("type");
+}
+
+function selectType(id) {
+  selType=id; selTopic=null;
+  buildTypes(); buildTopics();
+  var items = getRes(selOrg,selType,null);
+  buildCards("resource-list", items);
+  buildTable("table-section", items);
+  buildBreadcrumb(); show("topic");
+}
+
+function selectTopic(t) {
+  selTopic = t;
+  buildTopics();
+  var items = getRes(selOrg, selType, t||null);
+  buildCards("resource-list", items);
+  buildTable("table-section", items);
+  buildBreadcrumb();
+}
+
+function goOrg() { selType=null; selTopic=null; buildTypes(); buildBreadcrumb(); show("type"); }
+function goType() { selTopic=null; buildTopics(); var items=getRes(selOrg,selType,null); buildCards("resource-list",items); buildTable("table-section",items); buildBreadcrumb(); show("topic"); }
+
+function onSearch() {
+  var raw = document.getElementById("search").value.toLowerCase().trim();
+  if (!raw) { reset(); return; }
+  var terms = raw.split("+").map(function(t){return t.trim();}).filter(function(t){return t.length>0;});
+  var found = RES.filter(function(r){
+    return terms.every(function(q){ return matchesQuery(r,q); });
+  });
+  var label = found.length+' result'+(found.length!==1?'s':'')+' for "'+terms.join('" + "')+'"';
+  document.getElementById("search-label").textContent = label;
+  buildCards("search-list", found);
+  buildTable("search-table-section", found);
+  document.getElementById("breadcrumb").innerHTML = '<span onclick="reset()">all</span><span class="sep">/</span><span class="active">search: "'+terms.join(' + ')+'"</span>';
   show("search");
 }
-function getFormHTML(){
+
+// ============================================================
+// MODAL
+// ============================================================
+function getFormHTML() {
   return '<div class="modal-title">Suggest a resource</div>'
-    +'<p class="modal-sub">Your suggestion will be sent as a GitHub Issue. The team will review it before publishing.</p>'
-    +'<div class="field"><label>Name *</label><input id="f-name" placeholder="e.g. GBIF, TRY, QGIS..."/></div>'
-    +'<div class="field"><label>Organism group</label><select id="f-org"><option>Plants</option><option>Animals</option><option>Fungi</option><option>Multi-organism</option><option>Environment / Climate</option></select></div>'
-    +'<div class="field"><label>Resource type</label><select id="f-type"><option>Database</option><option>Dataset</option><option>Software</option><option>Images</option></select></div>'
-    +'<div class="field"><label>URL</label><input id="f-url" placeholder="https://..."/></div>'
-    +'<div class="field"><label>Description *</label><textarea id="f-desc" placeholder="What is it and how is it useful for ecology?"></textarea></div>'
-    +'<div class="field"><label>Tags (comma-separated)</label><input id="f-tags" placeholder="biodiversity, traits, global..."/></div>'
-    +'<div class="modal-actions"><button class="btn-cancel-m" onclick="closeModal()">Cancel</button><button class="btn-submit-m" onclick="submitSuggestion()">Submit suggestion</button></div>';
+    +'<p class="modal-sub">Click below to open the suggestion form. The team will review your submission before adding it to the database.</p>'
+    +'<div class="modal-actions"><button class="btn-cancel-m" onclick="closeModal()">Cancel</button><button class="btn-submit-m" onclick="submitSuggestion()">Open form →</button></div>';
 }
-function openModal(){document.getElementById("modal-inner").innerHTML=getFormHTML();document.getElementById("overlay").classList.add("open");document.body.style.overflow="hidden";}
-function closeModal(){document.getElementById("overlay").classList.remove("open");document.body.style.overflow="";}
-function submitSuggestion(){
-  var name=document.getElementById("f-name").value.trim();
-  var desc=document.getElementById("f-desc").value.trim();
-  if(!name||!desc){showToast("Please fill in name and description");return;}
-  var cat=document.getElementById("f-org").value;
-  var type=document.getElementById("f-type").value;
-  var url=document.getElementById("f-url").value.trim();
-  var tags=document.getElementById("f-tags").value.trim();
-  var body=encodeURIComponent("**Name:** "+name+"\n**Organism group:** "+cat+"\n**Type:** "+type+"\n**URL:** "+(url||"n/a")+"\n**Description:** "+desc+"\n**Tags:** "+(tags||"n/a")+"\n\n---\n*Suggested via low-cost-ecology website*");
-  window.open("https://github.com/agostinatorresm/LowCostEcology/issues/new?title="+encodeURIComponent("[Suggestion] "+name)+"&body="+body+"&labels=suggestion","_blank");
-  document.getElementById("modal-inner").innerHTML='<div style="text-align:center;padding:24px 0"><i class="ti ti-circle-check" style="font-size:52px;color:#3B6D11"></i><div style="font-size:20px;font-weight:600;color:#1c3a1c;margin:14px 0 8px">Thanks for contributing!</div><p style="font-size:13px;color:#888;line-height:1.6">GitHub opened to complete the submission.<br>The team will review your suggestion.</p><div style="margin-top:18px"><button class="btn-submit-m" style="padding:10px 28px" onclick="closeModal()">Close</button></div></div>';
+
+function openModal() { document.getElementById("modal-inner").innerHTML=getFormHTML(); document.getElementById("overlay").classList.add("open"); document.body.style.overflow="hidden"; }
+function closeModal() { document.getElementById("overlay").classList.remove("open"); document.body.style.overflow=""; }
+
+function submitSuggestion() {
+  var name = document.getElementById("f-name").value.trim();
+  var desc = document.getElementById("f-desc").value.trim();
+  if (!name||!desc) { showToast("Please fill in name and description"); return; }
+  var cat = document.getElementById("f-org").value;
+  var type = document.getElementById("f-type").value;
+  var url = document.getElementById("f-url").value.trim();
+  var tags = document.getElementById("f-tags").value.trim();
+  var body = encodeURIComponent("**Name:** "+name+"\n**Organism group:** "+cat+"\n**Type:** "+type+"\n**URL:** "+(url||"n/a")+"\n**Description:** "+desc+"\n**Tags:** "+(tags||"n/a")+"\n\n---\n*Suggested via Ecology on a Budget website*");
+  window.open("https://forms.gle/xhSV3Pi4oobYLfgv5","_blank");
+  document.getElementById("modal-inner").innerHTML = '<div style="text-align:center;padding:24px 0"><i class="ti ti-circle-check" style="font-size:52px;color:#3B6D11"></i><div style="font-size:20px;font-weight:600;color:#1c3a1c;margin:14px 0 8px">Thanks for contributing!</div><p style="font-size:13px;color:#888;line-height:1.6">The Google Form has opened in a new tab.<br>The team will review your suggestion before publishing it.</p><div style="margin-top:18px"><button class="btn-submit-m" style="padding:10px 28px" onclick="closeModal()">Close</button></div></div>';
 }
-function showToast(msg){var t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2800);}
-document.addEventListener("keydown",function(e){
-  if(e.key==="Escape")closeModal();
-  if(e.key==="/"&&document.activeElement.tagName!=="INPUT"&&document.activeElement.tagName!=="TEXTAREA"){e.preventDefault();document.getElementById("search").focus();}
+
+function showToast(msg) { var t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(function(){t.classList.remove("show");},2800); }
+
+document.addEventListener("keydown", function(e) {
+  if (e.key==="Escape") closeModal();
+  if (e.key==="/"&&document.activeElement.tagName!=="INPUT"&&document.activeElement.tagName!=="TEXTAREA") { e.preventDefault(); document.getElementById("search").focus(); }
 });
-reset();
+
+loadData();
 </script>
 </body>
 </html>
