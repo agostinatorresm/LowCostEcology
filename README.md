@@ -1,6 +1,6 @@
 # 🌿 LowCostEcology — Open Resources
 
-> A curated list of free or low-cost databases, software, and images for ecological research. Companion resource to the paper **"Ecology on a tight budget"**.
+> A curated list of free or low-cost databases, software, and images for ecological research. Companion resource to the paper **"Ecology on a budget"**.
 
 🌐 **Website:** `https://agostinatorresm.github.io/LowCostEcology`
 
