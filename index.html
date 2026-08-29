@@ -223,7 +223,7 @@ footer a{color:#7fbf6f}
         </div>
       </div>
       <div style="margin-bottom:20px">
-        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:#aaa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Web maintainer</div>
+        <div style="font-size:11px;font-family:'IBM Plex Mono',monospace;color:#aaa;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Website concept &amp; development</div>
         <!-- EDIT LINK: replace # with the person's URL -->
         <div style="font-size:14px;font-weight:600;color:#1c3a1c"><a href="https://agostinatorresm.github.io" target="_blank" style="color:#1c3a1c;text-decoration:underline">Agostina Torres</a> <span style="font-size:12px;font-weight:400;color:#888">with the help of <a href="https://claude.ai" target="_blank" style="color:#7fbf6f;text-decoration:none">Claude (Anthropic)</a></span></div>
         <div style="font-size:12px;color:#666;line-height:1.6">INIBIOMA, Universidad Nacional del Comahue, CONICET, Bariloche, Argentina<br>Institute of Integrative Biology, ETH Zürich, Switzerland</div>
@@ -620,14 +620,6 @@ function openModal() { document.getElementById("modal-inner").innerHTML=getFormH
 function closeModal() { document.getElementById("overlay").classList.remove("open"); document.body.style.overflow=""; }
 
 function submitSuggestion() {
-  var name = document.getElementById("f-name").value.trim();
-  var desc = document.getElementById("f-desc").value.trim();
-  if (!name||!desc) { showToast("Please fill in name and description"); return; }
-  var cat = document.getElementById("f-org").value;
-  var type = document.getElementById("f-type").value;
-  var url = document.getElementById("f-url").value.trim();
-  var tags = document.getElementById("f-tags").value.trim();
-  var body = encodeURIComponent("**Name:** "+name+"\n**Organism group:** "+cat+"\n**Type:** "+type+"\n**URL:** "+(url||"n/a")+"\n**Description:** "+desc+"\n**Tags:** "+(tags||"n/a")+"\n\n---\n*Suggested via Ecology on a Budget website*");
   window.open("https://forms.gle/xhSV3Pi4oobYLfgv5","_blank");
   document.getElementById("modal-inner").innerHTML = '<div style="text-align:center;padding:24px 0"><i class="ti ti-circle-check" style="font-size:52px;color:#3B6D11"></i><div style="font-size:20px;font-weight:600;color:#1c3a1c;margin:14px 0 8px">Thanks for contributing!</div><p style="font-size:13px;color:#888;line-height:1.6">The Google Form has opened in a new tab.<br>The team will review your suggestion before publishing it.</p><div style="margin-top:18px"><button class="btn-submit-m" style="padding:10px 28px" onclick="closeModal()">Close</button></div></div>';
 }
