@@ -612,8 +612,8 @@ function onSearch() {
 // ============================================================
 function getFormHTML() {
   return '<div class="modal-title">Suggest a resource</div>'
-    +'<p class="modal-sub">Click below to open the suggestion form. The team will review your submission before adding it to the database.</p>'
-    +'<div class="modal-actions"><button class="btn-cancel-m" onclick="closeModal()">Cancel</button><button class="btn-submit-m" onclick="submitSuggestion()">Open form →</button></div>';
+    +'<p class="modal-sub">Fill in the form below. The team will review your submission before adding it to the database.</p>'
+    +'<div class="modal-actions"><button class="btn-cancel-m" onclick="closeModal()">Cancel</button><a href="https://forms.gle/xhSV3Pi4oobYLfgv5" target="_blank" class="btn-submit-m" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center">Open form →</a></div>';
 }
 
 function openModal() { document.getElementById("modal-inner").innerHTML=getFormHTML(); document.getElementById("overlay").classList.add("open"); document.body.style.overflow="hidden"; }
